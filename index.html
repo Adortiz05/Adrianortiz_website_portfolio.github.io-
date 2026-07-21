@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrian Ortiz | Director Creativo & Editor</title>
+    <title>Adrian Ortiz | Filmmaker & Editor</title>
     <style>
         /* 1. Configuración de Estilo y Paleta de Colores */
         :root {
@@ -61,7 +61,7 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('assets/img/hero.jpg') center/cover;
         }
 
         .hero h1 {
@@ -118,6 +118,28 @@
             background-color: var(--bg-darker);
         }
 
+        /* Video destacado */
+        .featured-video {
+            max-width: 900px;
+            margin: 40px auto 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding: 56.25% 0 0 0; /* proporción 16:9 */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -127,9 +149,20 @@
 
         .project-card {
             background-color: #2a2a2a;
-            padding: 20px;
             border-radius: 8px;
             text-align: center;
+            overflow: hidden;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-card .card-text {
+            padding: 20px;
         }
 
         .project-card h3 {
@@ -178,7 +211,7 @@
 
     <!-- 2. Cabecera -->
     <header>
-        <a href="#" class="logo">ADRIÁN ORTIZ</a>
+        <a href="#" class="logo">ADRIAN ORTIZ</a>
         <nav>
             <a href="#sobre-mi">Sobre mí</a>
             <a href="#proyectos">Proyectos</a>
@@ -198,42 +231,74 @@
     <section id="sobre-mi">
         <h2>La visión detrás del lente</h2>
         <div class="about-content">
-            <p>Soy Adrian Ortiz, filmmaker y editor de video con una visión internacional forjada tras cuatro años de trayectoria en proyectos a través de Europa, África y Sudamérica. Me especializo en cinematografía y postproducción, enfocándome en capturar la esencia de marcas y comunidades mediante una narrativa visual, técnica y estética (storytelling). Desde el desarrollo conceptual hasta la integración de inteligencia artificial en flujos de trabajo de edición, me aseguro de que cada plano, corte y corrección de color tenga una intención estratégica clara. Ya sea en un set comercial, en la dirección de un cortometraje de ficción o coordinando la logística de campo en coberturas deportivas.</p>
+            <p><strong>Soy Adrian Ortiz — realizador audiovisual venezolano.</strong> He desarrollado proyectos en Europa, África y Sudamérica, aportando dirección de fotografía, edición y dirección creativa según las necesidades de cada producción.</p>
+            <p>Narrativa clara. Ejecución precisa. Sin relleno.</p>
+            <p>Cortar el ruido, llegar a la imagen que sí importa.</p>
         </div>
     </section>
 
     <!-- 5. Showroom -->
     <section id="proyectos" class="showroom">
         <h2>Proyectos Destacados</h2>
+
+        <!-- Video destacado (Vimeo) -->
+        <div class="featured-video">
+            <div class="video-wrapper">
+                <iframe
+                    src="https://player.vimeo.com/video/1211565440?badge=0&autopause=0&player_id=0&app_id=58479"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    title="Reel Adrian Ortiz">
+                </iframe>
+            </div>
+        </div>
+
         <div class="grid">
             <div class="project-card">
-                <h3>Comercial Bangente</h3>
-                <p>Dirección de Fotografía y Edición</p>
+                <img src="assets/img/bangente.jpg" alt="Comercial Banco Bangente">
+                <div class="card-text">
+                    <h3>Comercial Banco Bangente</h3>
+                    <p>Dirección de Fotografía</p>
+                </div>
             </div>
             <div class="project-card">
-                <h3>Nike Caracas 10K</h3>
-                <p>Dirección y Cobertura Deportiva</p>
+                <img src="assets/img/nike.jpg" alt="Nike Caracas 10K">
+                <div class="card-text">
+                    <h3>Nike Caracas 10K</h3>
+                    <p>Grabación y Edición</p>
+                </div>
             </div>
             <div class="project-card">
-                <h3>Mykonos Venezuela</h3>
-                <p>Mercadeo y Realización Audiovisual</p>
+                <img src="assets/img/rosaleda.jpg" alt="Válida Rosaleda">
+                <div class="card-text">
+                    <h3>Válida Rosaleda</h3>
+                    <p>Dirección Creativa</p>
+                </div>
             </div>
             <div class="project-card">
-                <h3>"Nunca es Tarde"</h3>
-                <p>Dirección y Fotografía y edición documental</p>
+                <img src="assets/img/nunca-es-tarde.png" alt="Nunca Es Tarde">
+                <div class="card-text">
+                    <h3>Nunca Es Tarde</h3>
+                    <p>Dirección, Fotografía y Edición</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- 6. Marcas y Colaboradores -->
     <section id="marcas">
-        <h2>Han confiado en mi visión</h2>
+        <h2>Marcas con las que he trabajado</h2>
         <div class="brands-container">
             <div class="brand-item">Miss Universo Venezuela</div>
             <div class="brand-item">Bangente</div>
             <div class="brand-item">Nike</div>
             <div class="brand-item">Mykonos</div>
             <div class="brand-item">Planeta Sport</div>
+            <div class="brand-item">Rely Venezuela</div>
+            <div class="brand-item">Malquerido Cantina</div>
+            <div class="brand-item">Toyota</div>
+            <div class="brand-item">El Griego</div>
             <div class="brand-item">CEO</div>
         </div>
     </section>
@@ -249,8 +314,9 @@
             <p><strong>Instagram:</strong> <a href="https://instagram.com/adrian.eog" target="_blank">@adrian.eog</a></p>
         </div>
 
-        <a href="mailto:adrianely05@gmail.com" class="btn">Iniciar un proyecto</a>
+        <a href="mailto:adrianely05@gmail.com" class="btn">Conversemos</a>
     </section>
 
+    <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
