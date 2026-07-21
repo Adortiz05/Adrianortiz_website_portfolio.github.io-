@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrián Ortiz | Filmmaker & Editor</title>
+    <style>
+        /* 1. Configuración de Estilo y Paleta de Colores */
+        :root {
+            --bg-color: #1A1A1A;
+            --text-main: #F3F3F3;
+            --accent: #FFD700;
+            --bg-darker: #111111;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        /* 2. Cabecera (Header) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: var(--bg-darker);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* 3. Sección Principal */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: #111;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e6c200;
+        }
+
+        /* Secciones Generales */
+        section {
+            padding: 80px 50px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        /* 4. Sección Sobre Mí */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* 5. Showroom */
+        .showroom {
+            background-color: var(--bg-darker);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .project-card h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        /* 6. Marcas y Colaboradores */
+        .brands-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .brand-item {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #888;
+        }
+
+        /* 7. Contacto */
+        .contact {
+            text-align: center;
+            background-color: var(--bg-darker);
+            padding-bottom: 100px;
+        }
+
+        .contact p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            margin: 40px 0;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 2. Cabecera -->
+    <header>
+        <a href="#" class="logo">ADRIÁN ORTIZ</a>
+        <nav>
+            <a href="#sobre-mi">Sobre mí</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#marcas">Marcas</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- 3. Sección Principal -->
+    <section class="hero">
+        <h1>¿Qué historia visual está esperando contar tu marca hoy?</h1>
+        <p>Elevamos la narrativa de tus proyectos a través de dirección cinematográfica, fotografía de alto impacto y flujos de trabajo impulsados por inteligencia artificial.</p>
+        <a href="#proyectos" class="btn">Ver mi trabajo</a>
+    </section>
+
+    <!-- 4. Sección Sobre Mí -->
+    <section id="sobre-mi">
+        <h2>La visión detrás del lente</h2>
+        <div class="about-content">
+            <p>Soy Adrián Ortiz, filmmaker y editor de video con una visión internacional forjada tras cuatro años de trayectoria en proyectos a través de Europa, África y Sudamérica. Me especializo en cinematografía y postproducción, enfocándome en capturar la esencia de marcas y comunidades mediante una narrativa visual, técnica y estética (storytelling). Desde el desarrollo conceptual hasta la integración de inteligencia artificial en flujos de trabajo de edición, me aseguro de que cada plano, corte y corrección de color tenga una intención estratégica clara. Ya sea en un set comercial, en la dirección de un cortometraje de ficción o coordinando la logística de campo en coberturas deportivas, mi enfoque es siempre el mismo: máxima calidad estética y una resolución impecable.</p>
+        </div>
+    </section>
+
+    <!-- 5. Showroom -->
+    <section id="proyectos" class="showroom">
+        <h2>Proyectos Destacados</h2>
+        <div class="grid">
+            <div class="project-card">
+                <h3>Comercial Banco Bangente</h3>
+                <p>Dirección de Fotografía y Edición</p>
+            </div>
+            <div class="project-card">
+                <h3>Nike Caracas 10K</h3>
+                <p>Dirección y Cobertura Deportiva</p>
+            </div>
+            <div class="project-card">
+                <h3>Mykonos Venezuela</h3>
+                <p>Dirección de Arte y Realización Audiovisual</p>
+            </div>
+            <div class="project-card">
+                <h3>"Entre lo que fuimos"</h3>
+                <p>Dirección y Guion de Ficción</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Marcas y Colaboradores -->
+    <section id="marcas">
+        <h2>Han confiado en mi visión</h2>
+        <div class="brands-container">
+            <div class="brand-item">Miss Universo Venezuela</div>
+            <div class="brand-item">Banco Bangente</div>
+            <div class="brand-item">Nike</div>
+            <div class="brand-item">Mykonos</div>
+            <div class="brand-item">Planeta Sport</div>
+            <div class="brand-item">Rely Venezuela</div>
+        </div>
+    </section>
+
+    <!-- 7. Contacto -->
+    <section id="contacto" class="contact">
+        <h2>Hagamos que tu próximo proyecto suceda</h2>
+        <p>Disponible para proyectos comerciales, dirección de fotografía y colaboraciones creativas en Venezuela y a nivel internacional.</p>
+        
+        <div class="contact-info">
+            <p><strong>Email:</strong> <a href="mailto:adrianely05@gmail.com">adrianely05@gmail.com</a></p>
+            <p><strong>Teléfono / WhatsApp:</strong> +58 412-7286293</p>
+            <p><strong>Instagram:</strong> <a href="https://instagram.com/adrian.eog" target="_blank">@adrian.eog</a></p>
+        </div>
+
+        <a href="mailto:adrianely05@gmail.com" class="btn">Iniciar un proyecto</a>
+    </section>
+
+</body>
+</html>
