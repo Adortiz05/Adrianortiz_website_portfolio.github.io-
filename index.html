@@ -574,7 +574,21 @@ html,body{margin:0;padding:0;background:#221811;}
   overflow: hidden;
   cursor: none;
 }
-.pbb-hero video {
+.pbb-hero-video-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s linear;
+}
+.pbb-hero-video-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+}
+.pbb-hero-video-wrap video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -586,30 +600,6 @@ html,body{margin:0;padding:0;background:#221811;}
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 30% 15%, rgba(255, 255, 255, 0.05), transparent 60%), var(--pbb-bg);
-}
-.pbb-hero-video-wrap {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.pbb-hero-video-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-}
-.pbb-hero-video-wrap iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 177.78vh;
-  height: 56.25vw;
-  min-height: 100%;
-  min-width: 100%;
-  transform: translate(-50%, -50%);
-  filter: brightness(0.55) saturate(1.05);
 }
 .pbb-hero-inner {
   position: relative;
@@ -673,15 +663,13 @@ html,body{margin:0;padding:0;background:#221811;}
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  opacity: 0.55;
-  filter: grayscale(1);
+  opacity: 0.72;
   transition:
     opacity 0.3s,
     filter 0.3s;
 }
 .pbb-marquee-track .pbb-logo-item:hover {
   opacity: 1;
-  filter: grayscale(0);
 }
 .pbb-marquee-track img {
   height: 26px;
@@ -692,7 +680,7 @@ html,body{margin:0;padding:0;background:#221811;}
   font-family: "Fraunces", serif;
   font-size: 15px;
   letter-spacing: 0.03em;
-  color: var(--pbb-text);
+  color: var(--pbb-accent);
 }
 
 .pbb-work {
@@ -888,6 +876,135 @@ html,body{margin:0;padding:0;background:#221811;}
 .pbb-reviews {
   padding: 6vw;
   background: var(--pbb-surface);
+}
+
+/* Panel de detalle de proyecto */
+.pbb-detail {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(8, 7, 6, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vw;
+  animation: pbb-lightbox-in 0.2s ease;
+}
+.pbb-detail-panel {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--pbb-surface);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.pbb-detail-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+}
+.pbb-detail-media img,
+.pbb-detail-media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+.pbb-detail-novideo {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+.pbb-detail-body {
+  padding: 32px 36px 40px;
+}
+.pbb-detail-tag {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pbb-muted);
+}
+.pbb-detail-title {
+  font-family: "Fraunces", serif;
+  font-size: clamp(24px, 3vw, 34px);
+  margin: 8px 0 4px;
+  color: var(--pbb-text);
+}
+.pbb-detail-client {
+  color: var(--pbb-muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.pbb-detail-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.pbb-detail-meta div {
+  font-size: 13px;
+  color: var(--pbb-muted);
+}
+.pbb-detail-meta strong {
+  display: block;
+  color: var(--pbb-text);
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.pbb-detail-desc {
+  color: var(--pbb-text);
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+.pbb-detail-desc em {
+  display: block;
+  margin-top: 14px;
+  color: var(--pbb-muted);
+  font-size: 13.5px;
+}
+.pbb-detail-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+.pbb-detail-close:hover { background: rgba(0,0,0,0.6); }
+@media (max-width: 760px) {
+  .pbb-detail { padding: 0; }
+  .pbb-detail-panel { max-height: 100vh; height: 100%; border-radius: 0; }
+  .pbb-detail-media { border-radius: 0; }
+  .pbb-detail-body { padding: 24px 20px 32px; }
 }
 .pbb-reviews-head {
   margin-bottom: 34px;
@@ -1112,7 +1229,7 @@ html,body{margin:0;padding:0;background:#221811;}
 
 </style>
 </head>
-<body style="--pbb-bg:#221811;--pbb-surface:#1c140e;--pbb-text:#F5F1E8;--pbb-muted:#9f9d97;--pbb-accent:#665d56;--pbb-accent-text:#F5F1E8;">
+<body style="--pbb-bg:#221811;--pbb-surface:#1c140e;--pbb-text:#F5F1E8;--pbb-muted:#9f9d97;--pbb-accent:#C9A227;--pbb-accent-text:#221811;">
 <div class="pbb-site" id="pbbSite">
 <nav class="pbb-site-nav pbb-nav-corners-round pbb-nav-pos-floating pbb-nav-scroll-normal">
   <span class="pbb-nm">Adrian Ortiz G.</span>
@@ -1128,9 +1245,14 @@ html,body{margin:0;padding:0;background:#221811;}
   </span>
 </nav>
 <section class="pbb-hero" id="home">
-  <div class="pbb-hero-video-wrap">
-    <iframe src="https://player.vimeo.com/video/1211565440?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  <div class="pbb-hero-video-wrap" id="pbbHeroVideoWrap">
+    <!-- Cuando tengas tu video de compilación, agrégalo así (reemplaza el comentario):
+    <video autoplay muted loop playsinline>
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+    El efecto de desvanecido al bajar (fade out) ya está listo, se activa solo en cuanto haya un <video> aquí dentro. -->
   </div>
+  <div class="pbb-no-vid"></div>
   <div class="pbb-hero-inner">
     <span class="pbb-eyebrow">dirección de fotografía, edición, dirección creativa</span>
     <h1>Hay un instante humano en cada historia. Mi trabajo es no dejarlo pasar.</h1>
@@ -1141,22 +1263,44 @@ Narrativa clara. Ejecución precisa.
 </p>
   </div>
 </section>
-<div class="pbb-marquee-wrap"><div class="pbb-marquee-track"><div class="pbb-logo-item"><span class="pbb-word">MYKONOS</span></div><div class="pbb-logo-item"><span class="pbb-word">MISS VENEZUELA</span></div><div class="pbb-logo-item"><span class="pbb-word">BAGENTE</span></div><div class="pbb-logo-item"><span class="pbb-word">NIKE</span></div><div class="pbb-logo-item"><span class="pbb-word">PLANETA SPORT</span></div><div class="pbb-logo-item"><span class="pbb-word">TOYOTA</span></div><div class="pbb-logo-item"><span class="pbb-word">ENC</span></div><div class="pbb-logo-item"><span class="pbb-word">MALQUERIDO CANTINA</span></div><div class="pbb-logo-item"><span class="pbb-word">MYKONOS</span></div><div class="pbb-logo-item"><span class="pbb-word">MISS VENEZUELA</span></div><div class="pbb-logo-item"><span class="pbb-word">BAGENTE</span></div><div class="pbb-logo-item"><span class="pbb-word">NIKE</span></div><div class="pbb-logo-item"><span class="pbb-word">PLANETA SPORT</span></div><div class="pbb-logo-item"><span class="pbb-word">TOYOTA</span></div><div class="pbb-logo-item"><span class="pbb-word">ENC</span></div><div class="pbb-logo-item"><span class="pbb-word">MALQUERIDO CANTINA</span></div></div></div>
+<div class="pbb-marquee-wrap"><div class="pbb-marquee-track"><div class="pbb-logo-item"><span class="pbb-word">MYKONOS</span></div><div class="pbb-logo-item"><span class="pbb-word">MISS VENEZUELA</span></div><div class="pbb-logo-item"><span class="pbb-word">BANGENTE</span></div><div class="pbb-logo-item"><span class="pbb-word">NIKE</span></div><div class="pbb-logo-item"><span class="pbb-word">PLANETA SPORT</span></div><div class="pbb-logo-item"><span class="pbb-word">TOYOTA</span></div><div class="pbb-logo-item"><span class="pbb-word">ENC</span></div><div class="pbb-logo-item"><span class="pbb-word">MALQUERIDO CANTINA</span></div><div class="pbb-logo-item"><span class="pbb-word">MYKONOS</span></div><div class="pbb-logo-item"><span class="pbb-word">MISS VENEZUELA</span></div><div class="pbb-logo-item"><span class="pbb-word">BANGENTE</span></div><div class="pbb-logo-item"><span class="pbb-word">NIKE</span></div><div class="pbb-logo-item"><span class="pbb-word">PLANETA SPORT</span></div><div class="pbb-logo-item"><span class="pbb-word">TOYOTA</span></div><div class="pbb-logo-item"><span class="pbb-word">ENC</span></div><div class="pbb-logo-item"><span class="pbb-word">MALQUERIDO CANTINA</span></div></div></div>
 <section class="pbb-work" id="work">
   <div class="pbb-work-head">
     <h2>Trabajo seleccionado</h2>
     <p>Proyectos de marca donde la estrategia y la imagen se encuentran.</p>
   </div>
-  <div class="pbb-grid"><div class="pbb-project-card">
+  <div class="pbb-grid">
+    <div class="pbb-project-card"
+      data-title="Válida Motocross, La Rosaleda"
+      data-client="Planeta Sport"
+      data-role="Dirección Creativa"
+      data-format="Cápsulas de contenido / Cobertura deportiva"
+      data-video=""
+      data-desc="Dos días de tierra, motores y un circuito que no perdona errores. Planeta Sport necesitaba capturar la segunda válida del año tal como se siente desde la pista — no la versión editada y segura, la real.
+
+Como director creativo, mi trabajo fue posicionar al equipo en los puntos exactos del circuito y coordinar en tiempo real: la primera curva, donde se decide todo en segundos; la recta final, donde se gana o se pierde. Nada se repite en motocross — si no estás ahí en el momento, se perdió.
+
+El resultado son cápsulas que priorizan lo que pasó realmente sobre la pista, no lo que se ve bien en cámara.">
         <div class="pbb-pc-media"><img src="assets/img/rosaleda.jpg" alt="Válida Motocross, La Rosaleda"></div>
         <div class="pbb-pc-overlay"></div>
         
         <div class="pbb-pc-info">
-          <span class="pbb-pc-tag">Video y FOtografía</span>
+          <span class="pbb-pc-tag">Video y Fotografía</span>
           <div class="pbb-pc-title">Válida Motocross, La Rosaleda</div>
           <div class="pbb-pc-client">Planeta Sport</div>
         </div>
-      </div><div class="pbb-project-card">
+      </div>
+    <div class="pbb-project-card"
+      data-title="Nunca Es Tarde"
+      data-client="Documental / ENC"
+      data-role="Dirección y Realización"
+      data-format="Cortometraje documental"
+      data-video=""
+      data-desc="Nueve meses de rodaje, desde la primera conversación con Yamileth hasta la línea de meta del Maratón CAF, febrero 2026. A los 50 y tantos, descubrió el trail running — y ahora se prepara para correr 42 kilómetros junto a su equipo.
+
+Lo que la mayoría no sabe es lo que su cuerpo ya vivió antes de esto. Ese pasado es parte de por qué corre.
+
+Un documental sobre lo que decidimos hacer con una segunda oportunidad, cuando ya sabemos que no era garantía.">
         <div class="pbb-pc-media"><img src="assets/img/nunca-es-tarde.jpg" alt="NUNCA ES TARDE"></div>
         <div class="pbb-pc-overlay"></div>
         
@@ -1165,7 +1309,16 @@ Narrativa clara. Ejecución precisa.
           <div class="pbb-pc-title">NUNCA ES TARDE</div>
           <div class="pbb-pc-client">DOCUMENTAL</div>
         </div>
-      </div><div class="pbb-project-card">
+      </div>
+    <div class="pbb-project-card"
+      data-title="Nike Caracas 10K"
+      data-client="Project We Run"
+      data-role="Realización Audiovisual (en colaboración con by.jona.qf)"
+      data-format="Reel Recap"
+      data-video=""
+      data-desc="by.jona.qf me sumó al equipo para cubrir esta carrera — trabajo en conjunto, sin tiempo que perder: la energía de una salida masiva no espera a que estés listo.
+
+El reto fue moverse rápido entre el pelotón, los tiempos y la gente en la meta, sin perder ni un segundo de lo que estaba pasando en vivo.">
         <div class="pbb-pc-media"><img src="assets/img/nike.jpg" alt="NIKE RUN 10k"></div>
         <div class="pbb-pc-overlay"></div>
         
@@ -1174,7 +1327,16 @@ Narrativa clara. Ejecución precisa.
           <div class="pbb-pc-title">NIKE RUN 10k</div>
           <div class="pbb-pc-client">PROJECT WE RUN</div>
         </div>
-      </div><div class="pbb-project-card">
+      </div>
+    <div class="pbb-project-card"
+      data-title="Lo soñé, lo logré con Bangente"
+      data-client="Bangente"
+      data-role="Dirección de Fotografía y Edición"
+      data-format="Comercial TV"
+      data-video="https://player.vimeo.com/video/1211565440?badge=0&autopause=0&player_id=0&app_id=58479"
+      data-desc="Comercial de TV que acompañó el Mundial 2026 — parte de la campaña que conectó el momento del país con la marca.
+
+El proyecto incluyó un video generado con IA, simulando su proyección en la pantalla de un local comercial — una pieza aparte, pensada para integrar innovación digital dentro de la narrativa del banco.">
         <div class="pbb-pc-media"><img src="assets/img/bangente.jpg" alt="Lo soñé, lo logré con Bangente"></div>
         <div class="pbb-pc-overlay"></div>
         
@@ -1183,7 +1345,16 @@ Narrativa clara. Ejecución precisa.
           <div class="pbb-pc-title">Lo soñé, lo logré con Bangente</div>
           <div class="pbb-pc-client">Bangente</div>
         </div>
-      </div><div class="pbb-project-card">
+      </div>
+    <div class="pbb-project-card"
+      data-title="Rally Toyota, La Limonera"
+      data-client="Toyota"
+      data-role="Edición y Postproducción / Recap"
+      data-format="Recap comisionado — El Conejo del Sombrero"
+      data-video=""
+      data-desc="El Conejo del Sombrero me pasó el material en bruto un día después del evento. Menos de 24 horas más tarde, el recap ya estaba listo para publicar.
+
+Sin tiempo para pensarlo dos veces: seleccionar las mejores tomas, encontrar el ritmo del rally y entregar algo que se sintiera como estar ahí — todo bajo el reloj corriendo.">
         <div class="pbb-pc-media"><img src="assets/img/toyota.jpg" alt="Rally Toyota, La Limonera"></div>
         <div class="pbb-pc-overlay"></div>
         
@@ -1192,16 +1363,26 @@ Narrativa clara. Ejecución precisa.
           <div class="pbb-pc-title">Rally Toyota, La Limonera</div>
           <div class="pbb-pc-client">TOYOTA</div>
         </div>
-      </div><div class="pbb-project-card">
-        <div class="pbb-pc-media"><img src="assets/img/missuniverse.jpg" alt="MISS UNIVERSE VENEZUELA"></div>
+      </div>
+    <div class="pbb-project-card"
+      data-title="Miss Universo Venezuela"
+      data-client="Sthephany Abasali"
+      data-role="Cámara y Edición (en colaboración con by.jona.qf)"
+      data-format="Cobertura de evento"
+      data-video=""
+      data-desc="Dos coberturas, un año de diferencia: la llegada de Sthephany Abasali como Miss Venezuela 2024, y en 2025, el momento en que ella misma entregó la corona a su sucesora.
+
+Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin perder el ritmo de lo que estaba pasando en tiempo real.">
+        <div class="pbb-pc-media"><img src="assets/img/missuniverse.jpg" alt="MISS UNIVERSO VENEZUELA"></div>
         <div class="pbb-pc-overlay"></div>
         
         <div class="pbb-pc-info">
           <span class="pbb-pc-tag">EVENTO </span>
-          <div class="pbb-pc-title">MISS UNIVERSE VENEZUELA</div>
+          <div class="pbb-pc-title">MISS UNIVERSO VENEZUELA</div>
           <div class="pbb-pc-client">Sthephany Abasali</div>
         </div>
-      </div></div>
+      </div>
+  </div>
 </section>
 <section class="pbb-reviews" id="reviews">
   <div class="pbb-reviews-head"><h2></h2></div>
@@ -1232,9 +1413,40 @@ Narrativa clara. Ejecución precisa.
   <button type="button" class="pbb-lightbox-close" id="pbbLightboxClose" aria-label="Cerrar vídeo">&times;</button>
   <div class="pbb-lightbox-frame" id="pbbLightboxFrame"></div>
 </div>
+<div class="pbb-detail" id="pbbDetail" role="dialog" aria-modal="true" style="display:none;">
+  <div class="pbb-detail-panel" id="pbbDetailPanel">
+    <button type="button" class="pbb-detail-close" id="pbbDetailClose" aria-label="Cerrar">&times;</button>
+    <div class="pbb-detail-media" id="pbbDetailMedia"></div>
+    <div class="pbb-detail-body">
+      <span class="pbb-detail-tag" id="pbbDetailTag"></span>
+      <div class="pbb-detail-title" id="pbbDetailTitle"></div>
+      <div class="pbb-detail-client" id="pbbDetailClient"></div>
+      <div class="pbb-detail-meta">
+        <div><strong id="pbbDetailRoleLabel"></strong></div>
+        <div><strong id="pbbDetailFormatLabel"></strong></div>
+      </div>
+      <div class="pbb-detail-desc" id="pbbDetailDesc"></div>
+    </div>
+  </div>
+</div>
 <script>
 (function(){
   var cursor = document.getElementById('pbb-cursor');
+
+  // Video de fondo del hero: se desvanece a medida que bajas, hasta desaparecer.
+  var heroVideoWrap = document.getElementById('pbbHeroVideoWrap');
+  if (heroVideoWrap && heroVideoWrap.querySelector('video')) {
+    var updateHeroFade = function(){
+      var vh = window.innerHeight || 800;
+      var progress = Math.min(Math.max(window.scrollY / vh, 0), 1);
+      heroVideoWrap.style.opacity = String(1 - progress);
+      heroVideoWrap.style.visibility = progress >= 1 ? 'hidden' : 'visible';
+    };
+    window.addEventListener('scroll', updateHeroFade, { passive: true });
+    window.addEventListener('resize', updateHeroFade);
+    updateHeroFade();
+  }
+
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (cursor && !reduced) {
     var mx = 0, my = 0, cx = 0, cy = 0;
@@ -1285,6 +1497,49 @@ Narrativa clara. Ejecución precisa.
   if (lightbox) {
     lightbox.addEventListener('click', closeLightbox);
     lightboxFrame.addEventListener('click', function(e){ e.stopPropagation(); });
+
+  var detail = document.getElementById('pbbDetail');
+  var detailPanel = document.getElementById('pbbDetailPanel');
+  var detailMedia = document.getElementById('pbbDetailMedia');
+  var detailTag = document.getElementById('pbbDetailTag');
+  var detailTitle = document.getElementById('pbbDetailTitle');
+  var detailClient = document.getElementById('pbbDetailClient');
+  var detailRoleLabel = document.getElementById('pbbDetailRoleLabel');
+  var detailFormatLabel = document.getElementById('pbbDetailFormatLabel');
+  var detailDesc = document.getElementById('pbbDetailDesc');
+  var detailClose = document.getElementById('pbbDetailClose');
+
+  function openDetail(card){
+    var d = card.dataset;
+    detailTag.textContent = d.client || '';
+    detailTitle.textContent = d.title || '';
+    detailClient.textContent = d.format || '';
+    detailRoleLabel.textContent = d.role || '';
+    detailFormatLabel.textContent = d.format || '';
+    detailDesc.textContent = d.desc || '';
+    var img = card.querySelector('.pbb-pc-media img');
+    var imgSrc = img ? img.getAttribute('src') : '';
+    if (d.video) {
+      detailMedia.innerHTML = '<iframe src="' + d.video + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    } else {
+      detailMedia.innerHTML = '<img src="' + imgSrc + '" alt="' + (d.title || '') + '"><span class="pbb-detail-novideo">Video próximamente</span>';
+    }
+    detail.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDetail(){
+    detail.style.display = 'none';
+    detailMedia.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.pbb-project-card').forEach(function(card){
+    card.addEventListener('click', function(){ openDetail(card); });
+  });
+  if (detail) {
+    detail.addEventListener('click', closeDetail);
+    detailPanel.addEventListener('click', function(e){ e.stopPropagation(); });
+    detailClose.addEventListener('click', closeDetail);
+  }
     document.getElementById('pbbLightboxClose').addEventListener('click', closeLightbox);
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLightbox(); });
   }
