@@ -617,9 +617,9 @@ html,body{margin:0;padding:0;background:#221811;}
 }
 .pbb-hero h1,
 .pbb-hero .pbb-hero-title {
-  font-size: clamp(38px, 6.6vw, 92px);
-  line-height: 0.98;
-  max-width: 16ch;
+  font-size: clamp(26px, 3.6vw, 52px);
+  line-height: 1.15;
+  max-width: 20ch;
   letter-spacing: -0.01em;
 }
 .pbb-hero h1 em,
@@ -878,38 +878,30 @@ html,body{margin:0;padding:0;background:#221811;}
   background: var(--pbb-surface);
 }
 
-/* Panel de detalle de proyecto */
+/* Panel de detalle de proyecto — página completa tipo "case study" */
 .pbb-detail {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(8, 7, 6, 0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4vw;
-  animation: pbb-lightbox-in 0.2s ease;
-}
-.pbb-detail-panel {
-  position: relative;
-  width: 100%;
-  max-width: 980px;
-  max-height: 88vh;
+  background: var(--pbb-bg);
   overflow-y: auto;
-  background: var(--pbb-surface);
-  border-radius: 14px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  animation: pbb-detail-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes pbb-detail-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .pbb-detail-media {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 78vh;
+  min-height: 420px;
   background: #000;
-  border-radius: 14px 14px 0 0;
   overflow: hidden;
 }
 .pbb-detail-media img,
-.pbb-detail-media iframe {
+.pbb-detail-media iframe,
+.pbb-detail-media video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -917,73 +909,142 @@ html,body{margin:0;padding:0;background:#221811;}
   object-fit: cover;
   border: 0;
 }
+.pbb-detail-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--pbb-bg) 0%, rgba(0,0,0,0) 35%);
+  pointer-events: none;
+}
 .pbb-detail-novideo {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
+  bottom: 28px;
+  left: 6vw;
+  z-index: 2;
   background: rgba(0,0,0,0.55);
   color: #fff;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 6px 12px;
+  padding: 7px 14px;
   border-radius: 20px;
   backdrop-filter: blur(4px);
 }
 .pbb-detail-body {
-  padding: 32px 36px 40px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 6vw 10vw;
+  position: relative;
 }
 .pbb-detail-tag {
   font-size: 12px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--pbb-muted);
+  color: var(--pbb-accent);
 }
 .pbb-detail-title {
   font-family: "Fraunces", serif;
-  font-size: clamp(24px, 3vw, 34px);
-  margin: 8px 0 4px;
+  font-size: clamp(28px, 4.4vw, 48px);
+  line-height: 1.1;
+  margin: 10px 0 6px;
   color: var(--pbb-text);
+  max-width: 18ch;
 }
 .pbb-detail-client {
   color: var(--pbb-muted);
-  font-size: 14px;
-  margin-bottom: 20px;
+  font-size: 15px;
+  margin-bottom: 28px;
 }
 .pbb-detail-meta {
   display: flex;
-  gap: 24px;
+  gap: 40px;
   flex-wrap: wrap;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 32px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .pbb-detail-meta div {
   font-size: 13px;
   color: var(--pbb-muted);
 }
+.pbb-detail-meta-label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  color: var(--pbb-muted);
+  margin-bottom: 4px;
+}
 .pbb-detail-meta strong {
   display: block;
   color: var(--pbb-text);
-  font-size: 14px;
-  margin-bottom: 2px;
+  font-size: 15px;
+  margin-bottom: 3px;
+  font-weight: 600;
 }
 .pbb-detail-desc {
   color: var(--pbb-text);
-  font-size: 15px;
-  line-height: 1.7;
-  white-space: pre-line;
 }
-.pbb-detail-desc em {
-  display: block;
-  margin-top: 14px;
+.pbb-detail-desc p {
+  font-size: 16.5px;
+  line-height: 1.8;
+  margin: 0 0 20px;
+}
+.pbb-detail-desc p.pbb-detail-note {
   color: var(--pbb-muted);
-  font-size: 13.5px;
+  font-size: 14px;
+  font-style: italic;
+  border-left: 2px solid var(--pbb-accent);
+  padding-left: 16px;
+  margin-top: 28px;
 }
+.pbb-detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 40px;
+}
+.pbb-detail-gallery img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+.pbb-detail-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 6vw;
+  pointer-events: none;
+}
+.pbb-detail-back {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: rgba(0,0,0,0.35);
+  padding: 10px 16px;
+  border-radius: 24px;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: background 0.2s;
+}
+.pbb-detail-back:hover { background: rgba(0,0,0,0.55); }
 .pbb-detail-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+  pointer-events: auto;
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -997,14 +1058,14 @@ html,body{margin:0;padding:0;background:#221811;}
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(4px);
-  z-index: 2;
+  transition: background 0.2s;
 }
 .pbb-detail-close:hover { background: rgba(0,0,0,0.6); }
 @media (max-width: 760px) {
-  .pbb-detail { padding: 0; }
-  .pbb-detail-panel { max-height: 100vh; height: 100%; border-radius: 0; }
-  .pbb-detail-media { border-radius: 0; }
-  .pbb-detail-body { padding: 24px 20px 32px; }
+  .pbb-detail-media { height: 52vh; min-height: 320px; }
+  .pbb-detail-body { padding: 0 6vw 18vw; }
+  .pbb-detail-meta { gap: 24px; }
+  .pbb-detail-topbar { padding: 16px 5vw; }
 }
 .pbb-reviews-head {
   margin-bottom: 34px;
@@ -1276,6 +1337,7 @@ Narrativa clara. Ejecución precisa.
       data-role="Dirección Creativa"
       data-format="Cápsulas de contenido / Cobertura deportiva"
       data-video=""
+      data-gallery=""
       data-desc="Dos días de tierra, motores y un circuito que no perdona errores. Planeta Sport necesitaba capturar la segunda válida del año tal como se siente desde la pista — no la versión editada y segura, la real.
 
 Como director creativo, mi trabajo fue posicionar al equipo en los puntos exactos del circuito y coordinar en tiempo real: la primera curva, donde se decide todo en segundos; la recta final, donde se gana o se pierde. Nada se repite en motocross — si no estás ahí en el momento, se perdió.
@@ -1296,6 +1358,7 @@ El resultado son cápsulas que priorizan lo que pasó realmente sobre la pista, 
       data-role="Dirección y Realización"
       data-format="Cortometraje documental"
       data-video=""
+      data-gallery=""
       data-desc="Nueve meses de rodaje, desde la primera conversación con Yamileth hasta la línea de meta del Maratón CAF, febrero 2026. A los 50 y tantos, descubrió el trail running — y ahora se prepara para correr 42 kilómetros junto a su equipo.
 
 Lo que la mayoría no sabe es lo que su cuerpo ya vivió antes de esto. Ese pasado es parte de por qué corre.
@@ -1316,6 +1379,7 @@ Un documental sobre lo que decidimos hacer con una segunda oportunidad, cuando y
       data-role="Realización Audiovisual (en colaboración con by.jona.qf)"
       data-format="Reel Recap"
       data-video=""
+      data-gallery=""
       data-desc="by.jona.qf me sumó al equipo para cubrir esta carrera — trabajo en conjunto, sin tiempo que perder: la energía de una salida masiva no espera a que estés listo.
 
 El reto fue moverse rápido entre el pelotón, los tiempos y la gente en la meta, sin perder ni un segundo de lo que estaba pasando en vivo.">
@@ -1334,9 +1398,10 @@ El reto fue moverse rápido entre el pelotón, los tiempos y la gente en la meta
       data-role="Dirección de Fotografía y Edición"
       data-format="Comercial TV"
       data-video="https://player.vimeo.com/video/1211565440?badge=0&autopause=0&player_id=0&app_id=58479"
+      data-gallery=""
       data-desc="Comercial de TV que acompañó el Mundial 2026 — parte de la campaña que conectó el momento del país con la marca.
 
-El proyecto incluyó un video generado con IA, simulando su proyección en la pantalla de un local comercial — una pieza aparte, pensada para integrar innovación digital dentro de la narrativa del banco.">
+Nota: el proyecto incluyó un video generado con IA, simulando su proyección en la pantalla de un local comercial — una pieza aparte, pensada para integrar innovación digital dentro de la narrativa del banco.">
         <div class="pbb-pc-media"><img src="assets/img/bangente.jpg" alt="Lo soñé, lo logré con Bangente"></div>
         <div class="pbb-pc-overlay"></div>
         
@@ -1352,6 +1417,7 @@ El proyecto incluyó un video generado con IA, simulando su proyección en la pa
       data-role="Edición y Postproducción / Recap"
       data-format="Recap comisionado — El Conejo del Sombrero"
       data-video=""
+      data-gallery=""
       data-desc="El Conejo del Sombrero me pasó el material en bruto un día después del evento. Menos de 24 horas más tarde, el recap ya estaba listo para publicar.
 
 Sin tiempo para pensarlo dos veces: seleccionar las mejores tomas, encontrar el ritmo del rally y entregar algo que se sintiera como estar ahí — todo bajo el reloj corriendo.">
@@ -1370,6 +1436,7 @@ Sin tiempo para pensarlo dos veces: seleccionar las mejores tomas, encontrar el 
       data-role="Cámara y Edición (en colaboración con by.jona.qf)"
       data-format="Cobertura de evento"
       data-video=""
+      data-gallery=""
       data-desc="Dos coberturas, un año de diferencia: la llegada de Sthephany Abasali como Miss Venezuela 2024, y en 2025, el momento en que ella misma entregó la corona a su sucesora.
 
 Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin perder el ritmo de lo que estaba pasando en tiempo real.">
@@ -1414,19 +1481,21 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
   <div class="pbb-lightbox-frame" id="pbbLightboxFrame"></div>
 </div>
 <div class="pbb-detail" id="pbbDetail" role="dialog" aria-modal="true" style="display:none;">
-  <div class="pbb-detail-panel" id="pbbDetailPanel">
+  <div class="pbb-detail-topbar">
+    <span class="pbb-detail-back" id="pbbDetailBack">&larr; Volver a proyectos</span>
     <button type="button" class="pbb-detail-close" id="pbbDetailClose" aria-label="Cerrar">&times;</button>
-    <div class="pbb-detail-media" id="pbbDetailMedia"></div>
-    <div class="pbb-detail-body">
-      <span class="pbb-detail-tag" id="pbbDetailTag"></span>
-      <div class="pbb-detail-title" id="pbbDetailTitle"></div>
-      <div class="pbb-detail-client" id="pbbDetailClient"></div>
-      <div class="pbb-detail-meta">
-        <div><strong id="pbbDetailRoleLabel"></strong></div>
-        <div><strong id="pbbDetailFormatLabel"></strong></div>
-      </div>
-      <div class="pbb-detail-desc" id="pbbDetailDesc"></div>
+  </div>
+  <div class="pbb-detail-media" id="pbbDetailMedia"></div>
+  <div class="pbb-detail-body">
+    <span class="pbb-detail-tag" id="pbbDetailTag"></span>
+    <div class="pbb-detail-title" id="pbbDetailTitle"></div>
+    <div class="pbb-detail-client" id="pbbDetailClient"></div>
+    <div class="pbb-detail-meta">
+      <div><span class="pbb-detail-meta-label">Rol</span><strong id="pbbDetailRoleLabel"></strong></div>
+      <div><span class="pbb-detail-meta-label">Formato</span><strong id="pbbDetailFormatLabel"></strong></div>
     </div>
+    <div class="pbb-detail-desc" id="pbbDetailDesc"></div>
+    <div class="pbb-detail-gallery" id="pbbDetailGallery"></div>
   </div>
 </div>
 <script>
@@ -1499,7 +1568,6 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
     lightboxFrame.addEventListener('click', function(e){ e.stopPropagation(); });
 
   var detail = document.getElementById('pbbDetail');
-  var detailPanel = document.getElementById('pbbDetailPanel');
   var detailMedia = document.getElementById('pbbDetailMedia');
   var detailTag = document.getElementById('pbbDetailTag');
   var detailTitle = document.getElementById('pbbDetailTitle');
@@ -1507,7 +1575,9 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
   var detailRoleLabel = document.getElementById('pbbDetailRoleLabel');
   var detailFormatLabel = document.getElementById('pbbDetailFormatLabel');
   var detailDesc = document.getElementById('pbbDetailDesc');
+  var detailGallery = document.getElementById('pbbDetailGallery');
   var detailClose = document.getElementById('pbbDetailClose');
+  var detailBack = document.getElementById('pbbDetailBack');
 
   function openDetail(card){
     var d = card.dataset;
@@ -1516,7 +1586,17 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
     detailClient.textContent = d.format || '';
     detailRoleLabel.textContent = d.role || '';
     detailFormatLabel.textContent = d.format || '';
-    detailDesc.textContent = d.desc || '';
+
+    detailDesc.innerHTML = '';
+    (d.desc || '').split(/\n\s*\n/).forEach(function(para){
+      para = para.trim();
+      if (!para) return;
+      var p = document.createElement('p');
+      if (/^Nota:/i.test(para)) { p.className = 'pbb-detail-note'; }
+      p.textContent = para;
+      detailDesc.appendChild(p);
+    });
+
     var img = card.querySelector('.pbb-pc-media img');
     var imgSrc = img ? img.getAttribute('src') : '';
     if (d.video) {
@@ -1524,7 +1604,18 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
     } else {
       detailMedia.innerHTML = '<img src="' + imgSrc + '" alt="' + (d.title || '') + '"><span class="pbb-detail-novideo">Video próximamente</span>';
     }
-    detail.style.display = 'flex';
+
+    detailGallery.innerHTML = '';
+    var galleryImgs = (d.gallery || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+    galleryImgs.forEach(function(src){
+      var gi = document.createElement('img');
+      gi.src = src;
+      gi.alt = d.title || '';
+      detailGallery.appendChild(gi);
+    });
+
+    detail.style.display = 'block';
+    detail.scrollTop = 0;
     document.body.style.overflow = 'hidden';
   }
   function closeDetail(){
@@ -1536,9 +1627,9 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
     card.addEventListener('click', function(){ openDetail(card); });
   });
   if (detail) {
-    detail.addEventListener('click', closeDetail);
-    detailPanel.addEventListener('click', function(e){ e.stopPropagation(); });
     detailClose.addEventListener('click', closeDetail);
+    detailBack.addEventListener('click', closeDetail);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && detail.style.display === 'block') closeDetail(); });
   }
     document.getElementById('pbbLightboxClose').addEventListener('click', closeLightbox);
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLightbox(); });
