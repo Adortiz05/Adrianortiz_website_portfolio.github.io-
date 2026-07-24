@@ -637,6 +637,9 @@ html,body{margin:0;padding:0;background:#221811;}
 }
 
 .pbb-marquee-wrap {
+  position: relative;
+  z-index: 2;
+  background: var(--pbb-bg);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 20px 0;
@@ -684,6 +687,9 @@ html,body{margin:0;padding:0;background:#221811;}
 }
 
 .pbb-work {
+  position: relative;
+  z-index: 2;
+  background: var(--pbb-bg);
   padding: 9vw 6vw 6vw;
 }
 .pbb-work-head {
@@ -1131,6 +1137,9 @@ html,body{margin:0;padding:0;background:#221811;}
 }
 
 .pbb-contact {
+  position: relative;
+  z-index: 2;
+  background: var(--pbb-bg);
   padding: 9vw 6vw;
   display: grid;
   grid-template-columns: 1fr 1.15fr;
@@ -1224,6 +1233,9 @@ html,body{margin:0;padding:0;background:#221811;}
   }
 }
 .pbb-about {
+  position: relative;
+  z-index: 2;
+  background: var(--pbb-bg);
   padding: 9vw 6vw;
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -1295,6 +1307,9 @@ html,body{margin:0;padding:0;background:#221811;}
   backdrop-filter: blur(4px);
 }
 .pbb-site-footer {
+  position: relative;
+  z-index: 2;
+  background: var(--pbb-bg);
   padding: 22px 6vw;
   display: flex;
   justify-content: space-between;
@@ -1390,7 +1405,7 @@ html,body{margin:0;padding:0;background:#221811;}
 <section class="pbb-hero" id="home">
   <div class="pbb-hero-video-wrap" id="pbbHeroVideoWrap">
     <video autoplay muted loop playsinline>
-      <source src="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/HERO.mp4" type="video/mp4">
+      <source src="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/HERO.mp4?v=3" type="video/mp4">
     </video>
   </div>
   <div class="pbb-no-vid"></div>
@@ -1596,19 +1611,8 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
 (function(){
   var cursor = document.getElementById('pbb-cursor');
 
-  // Video de fondo del hero: se desvanece a medida que bajas, hasta desaparecer.
+  // Video de fondo del hero: queda fijo (pinned) y el contenido siguiente sube por encima al hacer scroll.
   var heroVideoWrap = document.getElementById('pbbHeroVideoWrap');
-  if (heroVideoWrap && heroVideoWrap.querySelector('video')) {
-    var updateHeroFade = function(){
-      var vh = window.innerHeight || 800;
-      var progress = Math.min(Math.max(window.scrollY / vh, 0), 1);
-      heroVideoWrap.style.opacity = String(1 - progress);
-      heroVideoWrap.style.visibility = progress >= 1 ? 'hidden' : 'visible';
-    };
-    window.addEventListener('scroll', updateHeroFade, { passive: true });
-    window.addEventListener('resize', updateHeroFade);
-    updateHeroFade();
-  }
 
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (cursor && !reduced) {
