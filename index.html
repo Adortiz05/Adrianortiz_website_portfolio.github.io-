@@ -1014,6 +1014,18 @@ html,body{margin:0;padding:0;background:#221811;}
   border-bottom: 1px solid currentColor;
 }
 .pbb-detail-credit a:hover { opacity: 0.8; }
+.pbb-detail-credit-below {
+  text-align: center;
+  font-size: 15px;
+  color: var(--pbb-muted);
+  margin: 22px 0 0;
+}
+.pbb-detail-credit-below a {
+  color: var(--pbb-accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.pbb-detail-credit-below a:hover { opacity: 0.8; }
 .pbb-detail-subgrid .pbb-video-cell {
   display: flex;
   flex-direction: column;
@@ -1598,11 +1610,11 @@ Más allá del reto deportivo, la narrativa revela el evento médico crítico qu
       data-client="Project We Run"
       data-role="Cámara y Edición"
       data-format="Reel Recap"
-      data-video="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/NIKE_RUN_CARACAS_2025.mp4"
+      data-video="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/NIKE%20RUN%20CARACAS%202025.mp4"
       data-video-format="vertical"
       data-video-layout="pair"
       data-video-label="RECAP DE LA CARRERA"
-      data-gallery="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/NIKE_REVEAL_SHIRT_V3.mp4"
+      data-gallery="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/NIKE%20REVEAL%20SHIRT%20V3.mp4"
       data-gallery-labels="REVELACIÓN T-SHIRT"
       data-credit="Dirigido por By.jonaqf"
       data-credit-url="https://www.instagram.com/by.jonaqf?igsh=b3h1bzFoZXhnODdi"
@@ -1724,8 +1736,8 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
       <img class="pbb-detail-poster" id="pbbDetailPoster" alt="">
     </div>
     <div class="pbb-detail-mainvideo" id="pbbDetailMainVideo"></div>
-    <div class="pbb-detail-section-label" id="pbbVideosLabel" style="display:none;">Más Videos</div>
     <div class="pbb-detail-subgrid" id="pbbDetailVideos"></div>
+    <p class="pbb-detail-credit-below" id="pbbDetailCreditBelow"></p>
     <div class="pbb-detail-section-label" id="pbbPhotosLabel" style="display:none;">Fotografía</div>
     <div class="pbb-detail-masonry" id="pbbDetailPhotos"></div>
   </div>
@@ -1800,7 +1812,7 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
   var detailPoster = document.getElementById('pbbDetailPoster');
   var detailMainVideo = document.getElementById('pbbDetailMainVideo');
   var detailVideos = document.getElementById('pbbDetailVideos');
-  var detailVideosLabel = document.getElementById('pbbVideosLabel');
+  var detailCreditBelow = document.getElementById('pbbDetailCreditBelow');
   var detailPhotos = document.getElementById('pbbDetailPhotos');
   var detailPhotosLabel = document.getElementById('pbbPhotosLabel');
   var detailClose = document.getElementById('pbbDetailClose');
@@ -1815,21 +1827,6 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
     detailFormatLabel.textContent = d.format || '';
 
     detailDesc.innerHTML = '';
-    if (d.credit) {
-      var credit = document.createElement('p');
-      credit.className = 'pbb-detail-credit';
-      if (d.creditUrl) {
-        var a = document.createElement('a');
-        a.href = d.creditUrl;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.textContent = d.credit;
-        credit.appendChild(a);
-      } else {
-        credit.textContent = d.credit;
-      }
-      detailDesc.appendChild(credit);
-    }
     (d.desc || '').split(/\n\s*\n/).forEach(function(para){
       para = para.trim();
       if (!para) return;
@@ -1929,9 +1926,25 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
       }
     });
 
-    detailVideosLabel.style.display = detailVideos.children.length ? 'block' : 'none';
     detailPhotosLabel.style.display = detailPhotos.children.length ? 'block' : 'none';
     detailVideos.classList.toggle('pbb-format-vertical', d.videoFormat === 'vertical');
+
+    detailCreditBelow.innerHTML = '';
+    if (d.credit) {
+      if (d.creditUrl) {
+        var creditA = document.createElement('a');
+        creditA.href = d.creditUrl;
+        creditA.target = '_blank';
+        creditA.rel = 'noopener';
+        creditA.textContent = d.credit;
+        detailCreditBelow.appendChild(creditA);
+      } else {
+        detailCreditBelow.textContent = d.credit;
+      }
+      detailCreditBelow.style.display = 'block';
+    } else {
+      detailCreditBelow.style.display = 'none';
+    }
 
     detail.style.display = 'block';
     detail.scrollTop = 0;
