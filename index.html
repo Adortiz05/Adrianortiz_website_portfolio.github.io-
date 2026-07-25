@@ -934,7 +934,7 @@ html,body{margin:0;padding:0;background:#221811;}
   backdrop-filter: blur(4px);
 }
 .pbb-detail-body {
-  max-width: 860px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 6vw 10vw;
   position: relative;
@@ -1002,6 +1002,69 @@ html,body{margin:0;padding:0;background:#221811;}
   padding-left: 16px;
   margin-top: 28px;
 }
+.pbb-detail-credit {
+  text-align: center;
+  font-size: 15px;
+  color: var(--pbb-muted);
+  margin: 0 0 24px;
+}
+.pbb-detail-credit a {
+  color: var(--pbb-accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.pbb-detail-credit a:hover { opacity: 0.8; }
+.pbb-detail-subgrid .pbb-video-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 0 1 calc(33.333% - 10px);
+  min-width: 240px;
+}
+.pbb-detail-subgrid.pbb-format-vertical .pbb-video-cell {
+  flex-basis: 220px;
+  min-width: 180px;
+  max-width: 260px;
+}
+.pbb-detail-subgrid .pbb-video-cell video,
+.pbb-detail-subgrid .pbb-video-cell iframe {
+  flex: none;
+  min-width: 0;
+  width: 100%;
+}
+.pbb-video-cell-label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pbb-muted);
+  text-align: center;
+}
+.pbb-detail-descwrap {
+  display: block;
+}
+.pbb-detail-descwrap.pbb-has-poster {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+.pbb-detail-poster {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+@media (max-width: 760px) {
+  .pbb-detail-descwrap.pbb-has-poster {
+    grid-template-columns: 1fr;
+  }
+  .pbb-detail-poster {
+    max-width: 280px;
+    margin: 0 auto 24px;
+    order: -1;
+  }
+}
 .pbb-detail-mainvideo {
   position: relative;
   margin: 8px 0 40px;
@@ -1010,7 +1073,7 @@ html,body{margin:0;padding:0;background:#221811;}
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 85vh;
+  max-height: 92vh;
   display: block;
   margin: 0 auto;
   border-radius: 12px;
@@ -1518,11 +1581,9 @@ La operativa priorizó capturar la dinámica real de competencia mediante la ent
       data-video="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/NUNCA%20ES%20TARDE%20.mp4"
       data-poster="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/Nunca%20es%20tarde_Portada.png"
       data-gallery=""
-      data-desc="Nueve meses de rodaje, desde la primera conversación con Yamileth hasta la línea de meta del Maratón CAF, febrero 2026. A los 50 y tantos, descubrió el trail running — y ahora se prepara para correr 42 kilómetros junto a su equipo.
+      data-desc="Nunca Es Tarde es un cortometraje documental que condensa nueve meses de rodaje hasta la meta del Maratón CAF (febrero 2026). La obra acompaña a Yamileth, una mujer que descubrió el trail running en su madurez y ahora asume el desafío de correr 42 kilómetros junto a su equipo.
 
-Lo que la mayoría no sabe es lo que su cuerpo ya vivió antes de esto. Ese pasado es parte de por qué corre.
-
-Un documental sobre lo que decidimos hacer con una segunda oportunidad, cuando ya sabemos que no era garantía.">
+Más allá del reto deportivo, la narrativa revela el evento médico crítico que superó en su juventud, convirtiendo su carrera en un testimonio íntimo de resistencia y en una reflexión sobre las decisiones que tomamos al recibir una segunda oportunidad.">
         <div class="pbb-pc-media"><img src="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/nunca-es-tarde.jpg" alt="NUNCA ES TARDE"></div>
         <div class="pbb-pc-overlay"></div>
         
@@ -1535,13 +1596,17 @@ Un documental sobre lo que decidimos hacer con una segunda oportunidad, cuando y
     <div class="pbb-project-card"
       data-title="Nike Caracas 10K"
       data-client="Project We Run"
-      data-role="Realización Audiovisual (en colaboración con by.jona.qf)"
+      data-role="Cámara y Edición"
       data-format="Reel Recap"
       data-video="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/NIKE_RUN_CARACAS_2025.mp4"
+      data-video-format="vertical"
+      data-video-layout="pair"
+      data-video-label="RECAP DE LA CARRERA"
       data-gallery="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/NIKE_REVEAL_SHIRT_V3.mp4"
-      data-desc="by.jona.qf me sumó al equipo para cubrir esta carrera — trabajo en conjunto, sin tiempo que perder: la energía de una salida masiva no espera a que estés listo.
-
-El reto fue moverse rápido entre el pelotón, los tiempos y la gente en la meta, sin perder ni un segundo de lo que estaba pasando en vivo.">
+      data-gallery-labels="REVELACIÓN T-SHIRT"
+      data-credit="Dirigido por By.jonaqf"
+      data-credit-url="https://www.instagram.com/by.jonaqf?igsh=b3h1bzFoZXhnODdi"
+      data-desc="Cobertura para la carrera Nike Caracas 10K, estructurada en dos fases estratégicas de producción: la pieza visual para la revelación de la camiseta y el recap con los highlights de la competencia.">
         <div class="pbb-pc-media"><img src="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/nike.jpg" alt="NIKE RUN 10k"></div>
         <div class="pbb-pc-overlay"></div>
         
@@ -1654,7 +1719,10 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
       <div><span class="pbb-detail-meta-label">Rol</span><strong id="pbbDetailRoleLabel"></strong></div>
       <div><span class="pbb-detail-meta-label">Formato</span><strong id="pbbDetailFormatLabel"></strong></div>
     </div>
-    <div class="pbb-detail-desc" id="pbbDetailDesc"></div>
+    <div class="pbb-detail-descwrap" id="pbbDetailDescWrap">
+      <div class="pbb-detail-desc" id="pbbDetailDesc"></div>
+      <img class="pbb-detail-poster" id="pbbDetailPoster" alt="">
+    </div>
     <div class="pbb-detail-mainvideo" id="pbbDetailMainVideo"></div>
     <div class="pbb-detail-section-label" id="pbbVideosLabel" style="display:none;">Más Videos</div>
     <div class="pbb-detail-subgrid" id="pbbDetailVideos"></div>
@@ -1728,6 +1796,8 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
   var detailRoleLabel = document.getElementById('pbbDetailRoleLabel');
   var detailFormatLabel = document.getElementById('pbbDetailFormatLabel');
   var detailDesc = document.getElementById('pbbDetailDesc');
+  var detailDescWrap = document.getElementById('pbbDetailDescWrap');
+  var detailPoster = document.getElementById('pbbDetailPoster');
   var detailMainVideo = document.getElementById('pbbDetailMainVideo');
   var detailVideos = document.getElementById('pbbDetailVideos');
   var detailVideosLabel = document.getElementById('pbbVideosLabel');
@@ -1745,6 +1815,21 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
     detailFormatLabel.textContent = d.format || '';
 
     detailDesc.innerHTML = '';
+    if (d.credit) {
+      var credit = document.createElement('p');
+      credit.className = 'pbb-detail-credit';
+      if (d.creditUrl) {
+        var a = document.createElement('a');
+        a.href = d.creditUrl;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = d.credit;
+        credit.appendChild(a);
+      } else {
+        credit.textContent = d.credit;
+      }
+      detailDesc.appendChild(credit);
+    }
     (d.desc || '').split(/\n\s*\n/).forEach(function(para){
       para = para.trim();
       if (!para) return;
@@ -1754,18 +1839,57 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
       detailDesc.appendChild(p);
     });
 
+    if (d.poster) {
+      detailPoster.src = d.poster;
+      detailPoster.alt = d.title || '';
+      detailDescWrap.classList.add('pbb-has-poster');
+    } else {
+      detailPoster.removeAttribute('src');
+      detailDescWrap.classList.remove('pbb-has-poster');
+    }
+
     var img = card.querySelector('.pbb-pc-media img');
     var imgSrc = img ? img.getAttribute('src') : '';
     var isDirectVideo = function(url){ return /\.(mp4|webm|mov)(\?.*)?$/i.test(url || ''); };
     var isEmbed = function(url){ return /vimeo\.com|youtube\.com|youtu\.be/i.test(url || ''); };
+    var isPair = d.videoLayout === 'pair';
+
+    function buildVideoCell(src, label){
+      var vidEl;
+      if (isEmbed(src)) {
+        vidEl = document.createElement('iframe');
+        vidEl.src = src;
+        vidEl.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+        vidEl.setAttribute('allowfullscreen', '');
+      } else {
+        vidEl = document.createElement('video');
+        vidEl.src = src; vidEl.controls = true; vidEl.playsInline = true; vidEl.preload = 'metadata';
+      }
+      if (label) {
+        var cell = document.createElement('div');
+        cell.className = 'pbb-video-cell';
+        var lab = document.createElement('span');
+        lab.className = 'pbb-video-cell-label';
+        lab.textContent = label;
+        cell.appendChild(lab);
+        cell.appendChild(vidEl);
+        return cell;
+      }
+      return vidEl;
+    }
 
     // Portada: siempre la misma imagen que en "Trabajo Seleccionado".
     detailMedia.innerHTML = '<img src="' + imgSrc + '" alt="' + (d.title || '') + '">';
 
     // Video principal, en su formato original (sin recorte forzado), debajo de la descripción.
+    // Si el proyecto usa layout "pair" (videos en pareja), este espacio queda vacío
+    // y ambos videos se muestran juntos más abajo.
     detailMainVideo.innerHTML = '';
     detailMainVideo.classList.toggle('pbb-format-vertical', d.videoFormat === 'vertical');
-    if (d.video && isDirectVideo(d.video)) {
+    detailMainVideo.style.display = isPair ? 'none' : '';
+    if (isPair) {
+      // nada aquí — el video principal se integra abajo junto al secundario
+    } else if (d.video && isDirectVideo(d.video)) {
       var mainV = document.createElement('video');
       mainV.src = d.video; mainV.controls = true; mainV.playsInline = true; mainV.preload = 'metadata';
       if (d.poster) { mainV.poster = d.poster; }
@@ -1788,18 +1912,15 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
     detailVideos.innerHTML = '';
     detailPhotos.innerHTML = '';
     var extras = (d.gallery || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+    var galleryLabels = (d.galleryLabels || '').split(',').map(function(s){ return s.trim(); });
 
-    extras.forEach(function(src){
-      if (isDirectVideo(src)) {
-        var gv = document.createElement('video');
-        gv.src = src; gv.controls = true; gv.playsInline = true; gv.preload = 'metadata';
-        detailVideos.appendChild(gv);
-      } else if (isEmbed(src)) {
-        var gf = document.createElement('iframe');
-        gf.src = src;
-        gf.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
-        gf.setAttribute('allowfullscreen', '');
-        detailVideos.appendChild(gf);
+    if (isPair && d.video) {
+      detailVideos.appendChild(buildVideoCell(d.video, d.videoLabel || ''));
+    }
+    extras.forEach(function(src, idx){
+      if (isDirectVideo(src) || isEmbed(src)) {
+        var label = isPair ? (galleryLabels[idx] || '') : '';
+        detailVideos.appendChild(buildVideoCell(src, label));
       } else {
         var gi = document.createElement('img');
         gi.src = src;
