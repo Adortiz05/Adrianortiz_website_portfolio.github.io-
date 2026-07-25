@@ -897,8 +897,8 @@ html,body{margin:0;padding:0;background:#221811;}
 .pbb-detail-media {
   position: relative;
   width: 100%;
-  height: 78vh;
-  min-height: 420px;
+  aspect-ratio: 16 / 9;
+  max-height: 82vh;
   background: #000;
   overflow: hidden;
 }
@@ -1002,28 +1002,88 @@ html,body{margin:0;padding:0;background:#221811;}
   padding-left: 16px;
   margin-top: 28px;
 }
-.pbb-detail-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
-  margin-top: 40px;
+.pbb-detail-mainvideo {
+  position: relative;
+  margin: 8px 0 40px;
 }
-.pbb-detail-gallery img,
-.pbb-detail-gallery video {
+.pbb-detail-mainvideo video {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 85vh;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: #000;
+}
+.pbb-detail-mainvideo iframe {
   width: 100%;
-  height: 260px;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+  display: block;
+  background: #000;
+}
+.pbb-detail-mainvideo.pbb-format-vertical video {
+  aspect-ratio: 9 / 16;
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+}
+.pbb-detail-mainvideo .pbb-detail-novideo {
+  position: static;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.pbb-detail-section-label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pbb-muted);
+  margin: 44px 0 16px;
+}
+.pbb-detail-subgrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.pbb-detail-subgrid video,
+.pbb-detail-subgrid iframe {
+  flex: 0 1 calc(33.333% - 10px);
+  min-width: 240px;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 10px;
   display: block;
   background: #000;
+  border: 0;
 }
-.pbb-detail-gallery.pbb-gallery-3col {
-  grid-template-columns: repeat(3, 1fr);
+.pbb-detail-subgrid.pbb-format-vertical video,
+.pbb-detail-subgrid.pbb-format-vertical iframe {
+  aspect-ratio: 9 / 16;
+  flex-basis: 220px;
+  min-width: 180px;
+  max-width: 260px;
+  object-fit: cover;
 }
-@media (max-width: 760px) {
-  .pbb-detail-gallery.pbb-gallery-3col {
-    grid-template-columns: 1fr;
-  }
+.pbb-detail-masonry {
+  column-count: 3;
+  column-gap: 14px;
+}
+.pbb-detail-masonry img {
+  width: 100%;
+  display: block;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  break-inside: avoid;
+}
+@media (max-width: 900px) {
+  .pbb-detail-masonry { column-count: 2; }
+}
+@media (max-width: 560px) {
+  .pbb-detail-masonry { column-count: 1; }
 }
 .pbb-detail-topbar {
   position: fixed;
@@ -1433,13 +1493,14 @@ html,body{margin:0;padding:0;background:#221811;}
       data-role="Dirección Creativa"
       data-format="Cápsulas de contenido / Cobertura deportiva"
       data-video="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/MX%20Highlight%20D%C3%ADa%202.mp4"
+      data-video-format="vertical"
       data-gallery-cols="3"
       data-gallery="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/MX%20CLIP%201.mp4, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/MX%20CLIP%20CAIDA%201.mp4, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/MX%20DRONE-CLIP.mp4, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/MX%20ENTREVISTA%20CARLOS%20GONZALEZ%20Planeta%20Sports.mp4, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/MX%20CAIDA%20HOLESHOT%20mx2.mp4, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-40.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-61.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-98.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-118.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-164.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-171.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-176.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-251.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-252.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-301.jpg, https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/la%20rosaleda%20-%20KAPTA-338.jpg"
-      data-desc="Dos días de tierra, motores y un circuito que no perdona errores. Planeta Sport necesitaba capturar la segunda válida del año tal como se siente desde la pista — no la versión editada y segura, la real.
+      data-desc="Dirigí la estrategia creativa para Planeta Sport, liderando la cobertura audiovisual integral en video y fotografía durante los dos días de la segunda válida del campeonato de motocross en el circuito La Rosaleda.
 
-Como director creativo, mi trabajo fue posicionar al equipo en los puntos exactos del circuito y coordinar en tiempo real: la primera curva, donde se decide todo en segundos; la recta final, donde se gana o se pierde. Nada se repite en motocross — si no estás ahí en el momento, se perdió.
+El proyecto implicó la conformación y coordinación de un equipo especializado, compuesto por operadores de cámara, dron, fotografía, un editor de video en tiempo real y un gestor de redes encargado de la distribución inmediata.
 
-El resultado son cápsulas que priorizan lo que pasó realmente sobre la pista, no lo que se ve bien en cámara.">
+La operativa priorizó capturar la dinámica real de competencia mediante la entrega de contenido al instante, asegurando la promoción constante del evento y la alineación precisa con los objetivos de comunicación de la marca.">
         <div class="pbb-pc-media"><img src="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/rosaleda.jpg" alt="Válida Motocross, La Rosaleda"></div>
         <div class="pbb-pc-overlay"></div>
         
@@ -1456,7 +1517,8 @@ El resultado son cápsulas que priorizan lo que pasó realmente sobre la pista, 
       data-format="Cortometraje documental"
       data-video="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/NUNCA%20ES%20TARDE%20.mp4"
       data-poster="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/Nunca%20es%20tarde_Portada.png"
-      data-gallery="" desde la primera conversación con Yamileth hasta la línea de meta del Maratón CAF, febrero 2026. A los 50 y tantos, descubrió el trail running — y ahora se prepara para correr 42 kilómetros junto a su equipo.
+      data-gallery=""
+      data-desc="Nueve meses de rodaje, desde la primera conversación con Yamileth hasta la línea de meta del Maratón CAF, febrero 2026. A los 50 y tantos, descubrió el trail running — y ahora se prepara para correr 42 kilómetros junto a su equipo.
 
 Lo que la mayoría no sabe es lo que su cuerpo ya vivió antes de esto. Ese pasado es parte de por qué corre.
 
@@ -1593,7 +1655,11 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
       <div><span class="pbb-detail-meta-label">Formato</span><strong id="pbbDetailFormatLabel"></strong></div>
     </div>
     <div class="pbb-detail-desc" id="pbbDetailDesc"></div>
-    <div class="pbb-detail-gallery" id="pbbDetailGallery"></div>
+    <div class="pbb-detail-mainvideo" id="pbbDetailMainVideo"></div>
+    <div class="pbb-detail-section-label" id="pbbVideosLabel" style="display:none;">Más Videos</div>
+    <div class="pbb-detail-subgrid" id="pbbDetailVideos"></div>
+    <div class="pbb-detail-section-label" id="pbbPhotosLabel" style="display:none;">Fotografía</div>
+    <div class="pbb-detail-masonry" id="pbbDetailPhotos"></div>
   </div>
 </div>
 <script>
@@ -1662,7 +1728,11 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
   var detailRoleLabel = document.getElementById('pbbDetailRoleLabel');
   var detailFormatLabel = document.getElementById('pbbDetailFormatLabel');
   var detailDesc = document.getElementById('pbbDetailDesc');
-  var detailGallery = document.getElementById('pbbDetailGallery');
+  var detailMainVideo = document.getElementById('pbbDetailMainVideo');
+  var detailVideos = document.getElementById('pbbDetailVideos');
+  var detailVideosLabel = document.getElementById('pbbVideosLabel');
+  var detailPhotos = document.getElementById('pbbDetailPhotos');
+  var detailPhotosLabel = document.getElementById('pbbPhotosLabel');
   var detailClose = document.getElementById('pbbDetailClose');
   var detailBack = document.getElementById('pbbDetailBack');
 
@@ -1687,32 +1757,60 @@ Ambos recaps salieron en menos de 24 horas — de la calle a la pantalla sin per
     var img = card.querySelector('.pbb-pc-media img');
     var imgSrc = img ? img.getAttribute('src') : '';
     var isDirectVideo = function(url){ return /\.(mp4|webm|mov)(\?.*)?$/i.test(url || ''); };
-    if (d.video) {
-      if (isDirectVideo(d.video)) {
-        var posterAttr = d.poster ? ' poster="' + d.poster + '"' : '';
-        detailMedia.innerHTML = '<video src="' + d.video + '" controls playsinline preload="metadata"' + posterAttr + '></video>';
-      } else {
-        detailMedia.innerHTML = '<iframe src="' + d.video + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-      }
+    var isEmbed = function(url){ return /vimeo\.com|youtube\.com|youtu\.be/i.test(url || ''); };
+
+    // Portada: siempre la misma imagen que en "Trabajo Seleccionado".
+    detailMedia.innerHTML = '<img src="' + imgSrc + '" alt="' + (d.title || '') + '">';
+
+    // Video principal, en su formato original (sin recorte forzado), debajo de la descripción.
+    detailMainVideo.innerHTML = '';
+    detailMainVideo.classList.toggle('pbb-format-vertical', d.videoFormat === 'vertical');
+    if (d.video && isDirectVideo(d.video)) {
+      var mainV = document.createElement('video');
+      mainV.src = d.video; mainV.controls = true; mainV.playsInline = true; mainV.preload = 'metadata';
+      if (d.poster) { mainV.poster = d.poster; }
+      detailMainVideo.appendChild(mainV);
+    } else if (d.video && isEmbed(d.video)) {
+      var mainF = document.createElement('iframe');
+      mainF.src = d.video;
+      mainF.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      mainF.setAttribute('allowfullscreen', '');
+      detailMainVideo.appendChild(mainF);
     } else {
-      detailMedia.innerHTML = '<img src="' + imgSrc + '" alt="' + (d.title || '') + '"><span class="pbb-detail-novideo">Video próximamente</span>';
+      var note = document.createElement('span');
+      note.className = 'pbb-detail-novideo';
+      note.textContent = 'Video próximamente';
+      detailMainVideo.appendChild(note);
     }
 
-    detailGallery.innerHTML = '';
-    detailGallery.classList.toggle('pbb-gallery-3col', d.galleryCols === '3');
-    var galleryImgs = (d.gallery || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
-    galleryImgs.forEach(function(src){
+    // El resto del material (data-gallery) se separa: videos secundarios abajo en grid,
+    // fotos en mosaico tipo masonry (respetando horizontales y verticales).
+    detailVideos.innerHTML = '';
+    detailPhotos.innerHTML = '';
+    var extras = (d.gallery || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+
+    extras.forEach(function(src){
       if (isDirectVideo(src)) {
         var gv = document.createElement('video');
         gv.src = src; gv.controls = true; gv.playsInline = true; gv.preload = 'metadata';
-        detailGallery.appendChild(gv);
+        detailVideos.appendChild(gv);
+      } else if (isEmbed(src)) {
+        var gf = document.createElement('iframe');
+        gf.src = src;
+        gf.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+        gf.setAttribute('allowfullscreen', '');
+        detailVideos.appendChild(gf);
       } else {
         var gi = document.createElement('img');
         gi.src = src;
         gi.alt = d.title || '';
-        detailGallery.appendChild(gi);
+        detailPhotos.appendChild(gi);
       }
     });
+
+    detailVideosLabel.style.display = detailVideos.children.length ? 'block' : 'none';
+    detailPhotosLabel.style.display = detailPhotos.children.length ? 'block' : 'none';
+    detailVideos.classList.toggle('pbb-format-vertical', d.videoFormat === 'vertical');
 
     detail.style.display = 'block';
     detail.scrollTop = 0;
