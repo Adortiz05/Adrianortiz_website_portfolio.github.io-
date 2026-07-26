@@ -710,6 +710,19 @@ html,body{margin:0;padding:0;background:#221811;}
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 16px;
 }
+.pbb-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pbb-reveal.pbb-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.pbb-magnetic {
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
 .pbb-project-card {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -893,6 +906,13 @@ html,body{margin:0;padding:0;background:#221811;}
 @keyframes pbb-detail-in {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pbb-detail-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(16px); }
+}
+.pbb-detail.pbb-detail-closing {
+  animation: pbb-detail-out 0.25s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 .pbb-detail-media {
   position: relative;
@@ -1453,10 +1473,11 @@ html,body{margin:0;padding:0;background:#221811;}
   position: fixed;
   top: 0;
   left: 0;
-  width: 1cm;
-  height: 1cm;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  border: 1px solid var(--pbb-text, #f5f1e8);
+  background: radial-gradient(circle at 35% 30%, #fff3c4 0%, var(--pbb-accent, #C9A227) 55%, rgba(201, 162, 39, 0) 78%);
+  box-shadow: 0 0 16px 5px rgba(201, 162, 39, 0.55), 0 0 36px 12px rgba(201, 162, 39, 0.25);
   pointer-events: none;
   z-index: 999;
   transform: translate(-50%, -50%) scale(0);
@@ -1464,19 +1485,16 @@ html,body{margin:0;padding:0;background:#221811;}
     transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
     opacity 0.25s;
   opacity: 0;
+  mix-blend-mode: screen;
 }
 #pbb-cursor.pbb-show {
   transform: translate(-50%, -50%) scale(1);
-  opacity: 0.85;
+  opacity: 0.95;
+  animation: pbb-cursor-float 2.6s ease-in-out infinite;
 }
-#pbb-cursor::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--pbb-accent, #e8542a);
-  filter: blur(4px);
-  z-index: -1;
+@keyframes pbb-cursor-float {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -7px; }
 }
 
 @media (max-width: 900px) {
@@ -1671,13 +1689,13 @@ Editado en menos de 48 horas, el proyecto captura fielmente la energía, fuerza 
       </div>
     <div class="pbb-project-card"
       data-title="Miss Universe Venezuela"
-      data-client="Sthephany Abasali"
+      data-client="Stephany Abasali"
       data-role="Cámara y Edición"
       data-format="Reel"
       data-video="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/ARRIVAL%20STEPHANY%20ABASALI%20.mp4"
       data-video-format="vertical"
       data-video-layout="pair"
-      data-video-label="LLEGADA DE STHEPHANY ABASALI"
+      data-video-label="LLEGADA DE STEPHANY ABASALI"
       data-gallery="https://pub-a8f060d926a4473d8d712365ed574adf.r2.dev/Stephany%20Abasali%20Miss%20Venezuela%202025%20v2.mp4"
       data-gallery-labels="MISS VENEZUELA 2025"
       data-credit="Dirigido por @By.jonaqf"
@@ -1691,7 +1709,7 @@ El proyecto documenta su llegada al país tras su participación en el certamen 
         <div class="pbb-pc-info">
           <span class="pbb-pc-tag">EVENTO </span>
           <div class="pbb-pc-title">MISS UNIVERSE VENEZUELA</div>
-          <div class="pbb-pc-client">Sthephany Abasali</div>
+          <div class="pbb-pc-client">Stephany Abasali</div>
         </div>
       </div>
   </div>
@@ -1702,7 +1720,7 @@ El proyecto documenta su llegada al país tras su participación en el certamen 
 </section>
 <section class="pbb-contact" id="contact">
   <div class="pbb-contact-left">
-    <span class="pbb-tag">¿Quieres trabajar conmigo?</span>
+    <span class="pbb-tag pbb-magnetic">¿Quieres trabajar conmigo?</span>
     <h2>Conversemos</h2>
     <p><span>Escríbeme directo a</span> <a href="mailto:adrianely05@gmail.com">adrianely05@gmail.com</a></p>
   </div>
@@ -1711,7 +1729,7 @@ El proyecto documenta su llegada al país tras su participación en el certamen 
     <input type="text" name="company" placeholder="¿Para qué marca o proyecto?" aria-label="¿Para qué marca o proyecto?">
     <input type="email" name="email" placeholder="Tu correo" aria-label="Tu correo" required>
     <textarea rows="4" name="message" placeholder="Cuéntame tu idea" aria-label="Cuéntame tu idea" required></textarea>
-    <button type="submit">Enviar</button>
+    <button type="submit" class="pbb-magnetic">Enviar</button>
     <div class="pbb-form-msg" id="pbbFormMsg"></div>
   </form>
 </section>
@@ -1775,6 +1793,30 @@ El proyecto documenta su llegada al país tras su participación en el certamen 
         f.addEventListener('mouseleave', function(){ cursor.classList.add('pbb-show'); });
       });
     }
+  }
+  if (!reduced) {
+    document.querySelectorAll('.pbb-magnetic').forEach(function(el){
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        var mx2 = (e.clientX - r.left) / r.width - 0.5;
+        var my2 = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'translate(' + (mx2 * 14) + 'px, ' + (my2 * 14) + 'px)';
+      });
+      el.addEventListener('mouseleave', function(){ el.style.transform = 'translate(0, 0)'; });
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var revealTargets = document.querySelectorAll('.pbb-project-card, .pbb-about-text p');
+    revealTargets.forEach(function(el){ el.classList.add('pbb-reveal'); });
+    var revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('pbb-reveal-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealTargets.forEach(function(el){ revealObserver.observe(el); });
   }
   if (!reduced) {
     document.querySelectorAll('.pbb-project-card').forEach(function(card){
@@ -1958,12 +2000,29 @@ El proyecto documenta su llegada al país tras su participación en el certamen 
     document.body.style.overflow = 'hidden';
   }
   function closeDetail(){
-    detail.style.display = 'none';
-    detailMedia.innerHTML = '';
-    document.body.style.overflow = '';
+    detail.classList.add('pbb-detail-closing');
+    setTimeout(function(){
+      detail.style.display = 'none';
+      detail.classList.remove('pbb-detail-closing');
+      detailMedia.innerHTML = '';
+      document.body.style.overflow = '';
+    }, 240);
   }
   document.querySelectorAll('.pbb-project-card').forEach(function(card){
-    card.addEventListener('click', function(){ openDetail(card); });
+    card.addEventListener('click', function(){
+      if (detail.style.display === 'block') {
+        // Ya hay un proyecto abierto: transición suave hacia el nuevo en vez de un corte seco
+        detail.style.animation = 'none';
+        detail.classList.add('pbb-detail-closing');
+        setTimeout(function(){
+          detail.classList.remove('pbb-detail-closing');
+          detail.style.animation = '';
+          openDetail(card);
+        }, 200);
+      } else {
+        openDetail(card);
+      }
+    });
   });
   if (detail) {
     detailClose.addEventListener('click', closeDetail);
