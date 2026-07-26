@@ -1035,9 +1035,9 @@ html,body{margin:0;padding:0;background:#221811;}
   min-width: 240px;
 }
 .pbb-detail-subgrid.pbb-format-vertical .pbb-video-cell {
-  flex-basis: 220px;
-  min-width: 180px;
-  max-width: 260px;
+  flex-basis: 320px;
+  min-width: 240px;
+  max-width: 360px;
 }
 .pbb-detail-subgrid .pbb-video-cell video,
 .pbb-detail-subgrid .pbb-video-cell iframe {
@@ -1051,6 +1051,10 @@ html,body{margin:0;padding:0;background:#221811;}
   text-transform: uppercase;
   color: var(--pbb-muted);
   text-align: center;
+  min-height: 2.6em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 .pbb-detail-descwrap {
   display: block;
@@ -1059,12 +1063,14 @@ html,body{margin:0;padding:0;background:#221811;}
   display: block;
 }
 .pbb-detail-poster {
-  width: 100%;
-  max-height: 70vh;
-  object-fit: cover;
-  border-radius: 14px;
   display: block;
-  margin-bottom: 32px;
+  max-width: 640px;
+  max-height: 60vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  margin: 0 auto 32px;
 }
 @media (max-width: 760px) {
   .pbb-detail-poster {
@@ -1132,9 +1138,9 @@ html,body{margin:0;padding:0;background:#221811;}
 .pbb-detail-subgrid.pbb-format-vertical video,
 .pbb-detail-subgrid.pbb-format-vertical iframe {
   aspect-ratio: 9 / 16;
-  flex-basis: 220px;
-  min-width: 180px;
-  max-width: 260px;
+  flex-basis: 320px;
+  min-width: 240px;
+  max-width: 360px;
   object-fit: cover;
 }
 .pbb-detail-masonry {
@@ -1553,7 +1559,6 @@ html,body{margin:0;padding:0;background:#221811;}
 <section class="pbb-work" id="work">
   <div class="pbb-work-head">
     <h2>Trabajo seleccionado</h2>
-    <p>Proyectos de marca donde la estrategia y la imagen se encuentran.</p>
   </div>
   <div class="pbb-grid">
     <div class="pbb-project-card"
